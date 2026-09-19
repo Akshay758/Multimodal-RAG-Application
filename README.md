@@ -1,8 +1,8 @@
 # 🤖 Multimodal PDF RAG Q&A System
 
-A Retrieval-Augmented Generation (RAG) application that allows users to ask questions about processed PDF documents and receive context-grounded answers using an LLM.
+A Retrieval-Augmented Generation (RAG) application that allows users to ask questions about processed PDF documents and receive context-grounded answers using a Large Language Model (LLM).
 
-The project combines semantic search, vector embeddings, document retrieval, and LLM generation through an interactive Streamlit interface.
+The project combines semantic search, vector embeddings, document retrieval, ChromaDB, Hugging Face embeddings, LangChain, Groq, and Streamlit to build an interactive PDF question-answering system.
 
 ---
 
@@ -16,22 +16,26 @@ The project combines semantic search, vector embeddings, document retrieval, and
 
 This project demonstrates how a PDF-based question-answering system can be built using Retrieval-Augmented Generation (RAG).
 
-Instead of sending the entire PDF directly to the LLM, the system:
+Instead of sending the entire PDF directly to the LLM, the system processes the document, creates searchable representations, retrieves relevant information for a user's question, and then provides the retrieved information to the LLM as context.
 
-1. Processes the PDF
-2. Extracts retrievable content
-3. Splits the document into smaller retrievable units
-4. Converts content into vector embeddings
-5. Stores embeddings in ChromaDB
-6. Retrieves relevant content based on the user's question
-7. Builds a context-aware prompt
-8. Sends the retrieved context to an LLM
-9. Generates a context-based answer
-10. Displays the answer through a Streamlit interface
+The overall process is:
+
+1. Process the PDF
+2. Extract document content
+3. Organize content into retrievable units
+4. Generate vector embeddings
+5. Store embeddings in ChromaDB
+6. Receive a user question
+7. Perform semantic similarity search
+8. Retrieve relevant document content
+9. Build a context-aware prompt
+10. Send the context and question to the LLM
+11. Generate the final answer
+12. Display the answer through Streamlit
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 - 📄 PDF-based question answering
 - 🔎 Semantic search
@@ -42,44 +46,48 @@ Instead of sending the entire PDF directly to the LLM, the system:
 - 🔗 LangChain integration
 - 💬 Interactive Streamlit chat interface
 - 🖼️ Multimodal PDF content handling
+- 📊 Text and table retrieval
+- 🖼️ Image-aware retrieval workflow
 - 📝 Multiple question-and-answer interactions
-- 🔐 Environment variable based API key configuration
 - 📚 Context-aware document retrieval
+- 🔐 Environment variable based API key configuration
+- 💾 Persistent vector database and document store
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-### Programming Language
+## Programming Language
 
 - Python
 
-### AI / Generative AI
+## AI / Generative AI
 
 - Retrieval-Augmented Generation (RAG)
 - Large Language Models (LLMs)
 - Generative AI
+- Semantic Search
 
-### Frameworks
+## Frameworks
 
 - LangChain
 - Streamlit
 
-### Embeddings
+## Embeddings
 
 - Hugging Face
 - Sentence Transformers
 - `sentence-transformers/all-MiniLM-L6-v2`
 
-### Vector Database
+## Vector Database
 
 - ChromaDB
 
-### LLM Inference
+## LLM Inference
 
 - Groq
 
-### Environment Management
+## Environment Management
 
 - Python-dotenv
 
@@ -148,121 +156,3 @@ Instead of sending the entire PDF directly to the LLM, the system:
                 │ Final Answer    │
                 └─────────────────┘
 
-RAG Workflow
-
-The complete Retrieval-Augmented Generation pipeline works as follows:
-
-PDF
- │
- ▼
-Document Processing
- │
- ▼
-Content Extraction
- │
- ▼
-Chunking
- │
- ▼
-Embedding Generation
- │
- ▼
-ChromaDB
- │
- │
- └──────────────┐
-                │
-         User Question
-                │
-                ▼
-       Question Embedding
-                │
-                ▼
-       Similarity Search
-                │
-                ▼
-       Relevant Context
-                │
-                ▼
-       Prompt Construction
-                │
-                ▼
-           Groq LLM
-                │
-                ▼
-        Generated Answer
-                │
-                ▼
-          Streamlit UI
-🧠 How It Works
-1. PDF Processing
-
-The PDF document is processed to extract useful content.
-
-The processing stage can handle different types of document content such as:
-
-Text
-Tables
-Images
-
-The extracted content is prepared so that it can be used during retrieval.
-
-2. Content Extraction
-
-The extracted document content is organized into retrievable units.
-
-Each unit can contain information such as:
-
-Content
-Content type
-Metadata
-Document identifier
-Page information
-
-This information helps the retrieval system locate relevant content.
-
-Multimodal Workflow
-
-The project is designed around PDF content that can include different types of information.
-
-                    PDF
-                     │
-          ┌──────────┼──────────┐
-          │          │          │
-          ▼          ▼          ▼
-        Text       Tables      Images
-          │          │          │
-          └──────────┼──────────┘
-                     │
-                     ▼
-              Document Processing
-                     │
-                     ▼
-               Content Storage
-                     │
-                     ▼
-                 Retrieval
-                     │
-                     ▼
-                    LLM
-                     │
-                     ▼
-                   Answer
-
-Requirements
-
-The project uses libraries such as:
-
-streamlit
-langchain
-langchain-core
-langchain-groq
-langchain-chroma
-langchain-huggingface
-chromadb
-sentence-transformers
-python-dotenv
-
-Install all dependencies using:
-
-pip install -r requirements.txt
