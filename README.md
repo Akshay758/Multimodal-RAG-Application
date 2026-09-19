@@ -6,11 +6,6 @@ The project combines semantic search, vector embeddings, document retrieval, Chr
 
 ---
 
-## 🚀 Demo
-
-🔗 **Live Demo:** YOUR_STREAMLIT_LINK_HERE
-
----
 
 ## 📌 Overview
 
